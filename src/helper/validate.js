@@ -7,7 +7,25 @@ export async function usernameValidate(values){
     return errors
 }
 
+export async function passwordValidate(values){
+    const errors  = passwordVerify({},values)
+    return errors
+}
 
+// validate password
+function passwordVerify(err={},  values){
+    const specialChars = [".","\\", ":", ";"]
+    if(!values.password){
+        err.password = toast.error("Password Required")
+    }else if(values.password.includes(" ")){
+            err.password =toast.error("Invalid Password")
+    }else if(values.password <5){
+        err.password = toast.error("Passowrd must be more than 5 characters")
+    }else if(!specialChars.test(values.password)){
+        err.password = toast.err("password must contain special characters")
+    }
+    return err
+}
 
 
 
@@ -19,4 +37,4 @@ function userNameVerify( err={}, values ){
         err.username = toast.error("invalid Username")
      }
      return err
-}
+    }
