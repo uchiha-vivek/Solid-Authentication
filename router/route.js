@@ -1,30 +1,23 @@
+import { Router } from 'express';
+import * as controller from "../controller/appController.js";
 
-import {Router} from 'express'
+const router = Router();
+ 
+// POST
+router.route('/register').post(controller.register); 
+// router.route('/registerMail').post(registerMail); 
+// router.route('/authenticate').post(controller.verifyUser, (req, res) => res.end()); 
+ router.route('/login').post( controller.verifyUser ,controller.login); 
 
-const router = Router()
+// // GET
+// router.route('/user/:username').get(controller.getUser) 
+// router.route('/generateOTP').get(controller.verifyUser, localVariables, controller.generateOTP)
+// router.route('/verifyOTP').get(controller.verifyUser, controller.verifyOTP) 
+// router.route('/createResetSession').get(controller.createResetSession) 
 
+// // PUT
+ 
+// router.route('/updateuser').put(Auth, controller.updateUser); 
+// router.route('/resetPassword').put(controller.verifyUser, controller.resetPassword); 
 
-//POST
-
-router.route('/register').post((req,res) => res.json('register-route')) // register user
-router.route('/registerMail').post()// send  email
-router.route('/auth').post() // authenticate user
-router.route('/login').post() // login app
-
-
-// GET
-
-router.route("/user/:username").get() // user with username
-router.route("/generateOTP").get() // generate otp
-router.route("/verifyOTP").get()   // verify generate OTP
-router.route("/createResetSession").get() // reset all the varibles
-
-
-
-// PUT
-
-router.route("/updateUser").put() // update user profile
-router.route('/resetPassword').put() // use to rest password
-
-
-export default router
+export default router;
